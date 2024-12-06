@@ -9,6 +9,7 @@ namespace EmployeeProductivityTracker.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private const string FilePath = @"C:\Users\Somnath_Roy\Documents\office\Coding Katas\06-Dec-2024\TRIBlazzer-EmpProductivityTracker\EmployeeProductivityTracker\EmployeeProductivityTracker\Team data.xlsx";
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -17,6 +18,7 @@ namespace EmployeeProductivityTracker.Controllers
 
         public IActionResult Index()
         {
+            var data = ExcelDataReader.ReadWorkItemsFromExcel(FilePath);
             return View();
         }
 
