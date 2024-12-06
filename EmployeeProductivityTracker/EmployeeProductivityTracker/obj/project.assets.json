@@ -1,0 +1,70 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    "net6.0": []
+  },
+  "packageFolders": {
+    "C:\\Users\\Somnath_Roy\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Somnath_Roy\\Documents\\office\\Coding Katas\\06-Dec-2024\\TRIBlazzer-EmpProductivityTracker\\EmployeeProductivityTracker\\EmployeeProductivityTracker\\EmployeeProductivityTracker.csproj",
+      "projectName": "EmployeeProductivityTracker",
+      "projectPath": "C:\\Users\\Somnath_Roy\\Documents\\office\\Coding Katas\\06-Dec-2024\\TRIBlazzer-EmpProductivityTracker\\EmployeeProductivityTracker\\EmployeeProductivityTracker\\EmployeeProductivityTracker.csproj",
+      "packagesPath": "C:\\Users\\Somnath_Roy\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Somnath_Roy\\Documents\\office\\Coding Katas\\06-Dec-2024\\TRIBlazzer-EmpProductivityTracker\\EmployeeProductivityTracker\\EmployeeProductivityTracker\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Somnath_Roy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.321\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
