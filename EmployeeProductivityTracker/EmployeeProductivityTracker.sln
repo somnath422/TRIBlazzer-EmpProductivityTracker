@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeProductivityTracker", "EmployeeProductivityTracker\EmployeeProductivityTracker.csproj", "{D8BE6D0B-AD60-476D-914C-A1376041729A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeProductivityTracker", "EmployeeProductivityTracker\EmployeeProductivityTracker.csproj", "{6EB776FD-9FF8-415A-9B09-91CA235FA333}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D8BE6D0B-AD60-476D-914C-A1376041729A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8BE6D0B-AD60-476D-914C-A1376041729A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8BE6D0B-AD60-476D-914C-A1376041729A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8BE6D0B-AD60-476D-914C-A1376041729A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EB776FD-9FF8-415A-9B09-91CA235FA333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EB776FD-9FF8-415A-9B09-91CA235FA333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EB776FD-9FF8-415A-9B09-91CA235FA333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EB776FD-9FF8-415A-9B09-91CA235FA333}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {94415621-614A-4E6C-98B8-648DE67D3048}
+		SolutionGuid = {66497FF0-8EF7-4350-AF51-B33AD72AFFD0}
 	EndGlobalSection
 EndGlobal
