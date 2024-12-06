@@ -1,8 +1,130 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model DashboardModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Number of Commits Per Story Type</h1>
+<label>Teams</label>
+<select id="teamsDropdown" asp-for="Teams" class="form-control" >
+    <option value="">Select Area Path</option>
+    @foreach (var areaPath in Model.Teams as List<string>)
+    {
+        <option value="@areaPath">@areaPath</option>
+    }
+</select>
+
+<label>Assigned To</label>
+<select id="assigneeDropdown" asp-for="Teams" class="form-control" >
+    <option value="">Select Assinee</option>
+    @foreach (var assignee in Model.Assignes as List<string>)
+    {
+        <option value="@assignee">@assignee</option>
+    }
+</select>
+<label>Iteration Path</label>
+<select id="iterationPathDropdown" asp-for="Teams" class="form-control" >
+    <option value="">Select Sprint</option>
+    @foreach (var sprint in Model.Sprints as List<string>)
+    {
+        <option value="@sprint">@sprint</option>
+    }
+</select>
+
+<button type="button" onclick="redirectToUrlWithValue()">Submit</button>
+<div id="chart_div"></div>
+<script type="text/javascript">
+    function redirectToUrlWithValue() {
+        // Get the dropdown list
+        var teamsdropdown = document.getElementById('teamsDropdown');
+         var assigneedropdown = document.getElementById('assigneeDropdown');
+          var iterationPathDropdown = document.getElementById('iterationPathDropdown');
+        
+        // Get the selected value
+        var selectedValue = teamsdropdown.value;
+        var selectedAssigneeValue = assigneedropdown.value;
+        var selectedAssignedToValue = iterationPathDropdown.value;
+        
+        // Check if a value is selected
+        if (selectedValue) {
+            // Build the URL with the selected value as a query string
+            var newUrl = '/Home/Index?AreaPath=' + encodeURIComponent(selectedValue) + '&Assignee='+ encodeURIComponent(selectedAssigneeValue) + '&IterationPath='+encodeURIComponent(selectedAssignedToValue);
+            
+            // Redirect to the new URL
+            window.location.href = newUrl;
+        }
+    }
+</script>
+<div id="committedVsCompletedChart" style="width: 800px; height: 500px;"></div>
+<div id="bugsRaisedChart" style="width: 800px; height: 500px;"></div>
+<div id="commitActivityChart" style="width: 800px; height: 500px;"></div>
+<div id="reviewCommentsChart" style="width: 800px; height: 500px;"></div>
+
+@section Scripts {
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart', 'bar'] });
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
+            drawCommittedVsCompletedChart();
+            drawBugsRaisedChart();
+            drawCommitActivityChart();
+            drawReviewCommentsChart();
+        }
+
+        function drawCommittedVsCompletedChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Metric');
+            data.addColumn('number', 'Hours');
+
+            data.addRow(['Original Estimate', @Model.WorkItems.Sum(m => m.OriginalEstimateInHours ?? 0)]);
+            data.addRow(['Completed Estimate', @Model.WorkItems.Sum(m => m.CompletedEstimateInHours ?? 0)]);
+
+            var options = { title: 'Committed vs Completed Hours' };
+            var chart = new google.visualization.BarChart(document.getElementById('committedVsCompletedChart'));
+            chart.draw(data, options);
+        }
+
+        function drawBugsRaisedChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Story');
+            data.addColumn('number', 'Bugs');
+
+        @foreach (var item in Model.WorkItems)
+        {
+            @:data.addRow(['@item.Title', @item.NumberOfBugsRaised]);
+        }
+
+                    var options = { title: 'Number of Bugs Raised' };
+            var chart = new google.visualization.ColumnChart(document.getElementById('bugsRaisedChart'));
+            chart.draw(data, options);
+        }
+
+        function drawCommitActivityChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Story');
+            data.addColumn('number', 'Commits');
+
+        @foreach (var item in Model.WorkItems)
+        {
+            @:data.addRow(['@item.Title', @item.NumberOfCommitsPerStory]);
+        }
+
+                    var options = { title: 'Commit Activity per Story' };
+            var chart = new google.visualization.ColumnChart(document.getElementById('commitActivityChart'));
+            chart.draw(data, options);
+        }
+
+        function drawReviewCommentsChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Story');
+            data.addColumn('number', 'Review Comments');
+
+        @foreach (var item in Model.WorkItems)
+        {
+            @:data.addRow(['@item.Title', @item.NumberOfReviewCommentsPerMergeRequest]);
+        }
+
+                    var options = { title: 'Review Comments per Merge Request' };
+            var chart = new google.visualization.ColumnChart(document.getElementById('reviewCommentsChart'));
+            chart.draw(data, options);
+        }
+    </script>
+}

@@ -16,10 +16,37 @@ namespace EmployeeProductivityTracker.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index([FromQuery] string AreaPath, [FromQuery] string Assignee, [FromQuery] string IterationPath)
         {
-            var data = ExcelDataReader.ReadWorkItemsFromExcel(FilePath);
-            return View();
+            
+            var workItems = ExcelDataReader.ReadWorkItemsFromExcel(FilePath);
+
+            DashboardModel model = new DashboardModel();
+
+            model.Assignes = workItems.Select(wi => wi.AssignedTo.Trim()).Distinct().ToList();
+
+            model.Teams = workItems.Select(wi => wi.AreaPath.Trim()).Distinct().ToList();
+
+            model.Sprints = workItems.Select(wi => wi.IterationPath.Trim()).Distinct().ToList();
+
+            model.WorkItems = workItems;
+
+            if (!string.IsNullOrEmpty(AreaPath))
+            {
+                model.WorkItems = workItems.Where(w => w.AreaPath == AreaPath).ToList();
+            }
+
+            if(!string.IsNullOrEmpty(Assignee))
+            {
+                model.WorkItems = workItems.Where(w => w.AssignedTo == Assignee).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(IterationPath))
+            {
+                model.WorkItems = workItems.Where(w => w.IterationPath == IterationPath).ToList();
+            }
+
+            return View(model);
         }
 
         public IActionResult Privacy()
